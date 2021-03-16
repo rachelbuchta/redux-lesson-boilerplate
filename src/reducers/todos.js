@@ -6,7 +6,7 @@ export const todos = (state = [], action) => {
         {id: Date.now(), text: action.todo, completed: false}
       ]
     case 'TOGGLE_TODO':
-      state.todos.map(todo => {
+      return state.map(todo => {
         if(todo.id === action.id) {
           todo.completed = !todo.completed
         }
