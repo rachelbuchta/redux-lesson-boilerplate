@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { showAll } from '../actions'
 import ToDo from '../containers/ToDo'
 
-const ToDoList = ({todos}) => {
+const ToDoList = ({todos, showAll}) => {
   const displayTodos = todos.map(todo => {
     return (
       <ToDo 
@@ -15,7 +16,7 @@ const ToDoList = ({todos}) => {
   return (
     <>
       <section>
-        <button>Show All</button>
+        <button onClick={()=>showAll()}>Show All</button>
         <button>Show Active</button>
         <button>Show Completed</button>
       </section>
@@ -27,7 +28,11 @@ const ToDoList = ({todos}) => {
 }
 
 const mapStateToProps = state => ({
-  todos: state.todos
+  todos: state.todos.todos
 })
 
-export default connect(mapStateToProps)(ToDoList)
+const mapDispatchToProps = dispatch => ({
+  showAll: () => dispatch( showAll() )
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)
