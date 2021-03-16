@@ -1,17 +1,30 @@
 import React from 'react'
+import ToDo from '../containers/ToDo'
 import { connect } from 'react-redux'
 import { showAll, showActive, showCompleted } from '../actions'
-import ToDo from '../containers/ToDo'
 
-const ToDoList = ({todos, showAll, showActive, showCompleted}) => {
-  const displayTodos = todos.map(todo => {
+const ToDoList = ({todos, showAll, showActive, showCompleted, clicked, active, completed}) => {
+  
+  const createTodos = (todo) => {
     return (
       <ToDo 
-        {...todo}
-        key={todo.id}
+       key={todo.id}
+        id={todo.id}
+        text={todo.text}
+        completed={todo.completed}
       />
     )
-  })
+}
+
+  const displayTodos = () => {
+    if (clicked === 'all') {
+      return todos.map(todo => createTodos(todo))
+    } else if (clicked === 'active') {
+      return active.map(todo => createTodos(todo))
+    } else if (clicked === 'completed') {
+      return completed.map(todo => createTodos(todo))
+    } 
+  }
 
   return (
     <>
@@ -21,7 +34,7 @@ const ToDoList = ({todos, showAll, showActive, showCompleted}) => {
         <button onClick={()=>showCompleted()}>Show Completed</button>
       </section>
       <ul>
-        {displayTodos}
+        {displayTodos()}
       </ul>
     </>
   )

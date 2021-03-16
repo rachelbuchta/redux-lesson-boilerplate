@@ -5,12 +5,11 @@ const initialState = {
   clicked: 'all'
 }
 
-
 export const todos = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return {
-        // ...state,
+        ...state,
         todos: [...state.todos, {id: Date.now(), text: action.todo, completed: false}]
       }
     case 'TOGGLE_TODO':
@@ -21,24 +20,26 @@ export const todos = (state = initialState, action) => {
       return todo
       })
       return {
-        // ...state,
+        ...state,
         todos: updateTodos
       }
     case 'SHOW_ALL':
       return {
-        todos: [...state.todos],
+        ...state,
         clicked: 'all'
       }
     case 'SHOW_ACTIVE':
       const activeTodos = state.todos.filter(todo => !todo.completed)
       return {
-        todos: activeTodos,
+        ...state,
+        active: activeTodos,
         clicked: 'active'
       }
     case 'SHOW_COMPLETED':
       const completedTodos = state.todos.filter(todo => todo.completed)
       return {
-        todos: completedTodos,
+        ...state,
+        completed: completedTodos,
         clicked: 'completed'
       }
       default:
