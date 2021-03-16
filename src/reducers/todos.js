@@ -29,6 +29,18 @@ export const todos = (state = initialState, action) => {
         todos: [...state.todos],
         clicked: 'all'
       }
+    case 'SHOW_ACTIVE':
+      const activeTodos = state.todos.filter(todo => !todo.completed)
+      return {
+        todos: activeTodos,
+        clicked: 'active'
+      }
+    case 'SHOW_COMPLETED':
+      const completedTodos = state.todos.filter(todo => todo.completed)
+      return {
+        todos: completedTodos,
+        clicked: 'completed'
+      }
       default:
         return state
   }
