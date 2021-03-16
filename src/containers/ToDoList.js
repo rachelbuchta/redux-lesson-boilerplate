@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ToDo from '../components/ToDo'
+import ToDo from '../containers/ToDo'
 
 const ToDoList = ({todos}) => {
   const displayTodos = todos.map(todo => {
@@ -13,9 +13,16 @@ const ToDoList = ({todos}) => {
   })
 
   return (
-    <ul>
-      {displayTodos}
-    </ul>
+    <>
+      <section>
+        <button>Show All</button>
+        <button>Show Active</button>
+        <button>Show Completed</button>
+      </section>
+      <ul>
+        {displayTodos}
+      </ul>
+    </>
   )
 }
 
