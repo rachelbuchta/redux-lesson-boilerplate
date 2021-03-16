@@ -42,6 +42,12 @@ export const todos = (state = initialState, action) => {
         completed: completedTodos,
         clicked: 'completed'
       }
+    case 'REMOVE_TODO':
+      const remainingTodos = state.todos.filter(todo => todo.id !== action.id)
+      return {
+        ...state,
+        todos: remainingTodos
+      }
       default:
         return state
   }

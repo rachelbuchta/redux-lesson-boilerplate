@@ -19,3 +19,8 @@ export const showActive = () => ({
 export const showCompleted = () => ({
   type: 'SHOW_COMPLETED'
 })
+
+export const removeToDo = id => ({
+  type: 'REMOVE_TODO',
+  id
+})
